@@ -21,7 +21,15 @@ var DateTimePickerDays = onClickOutside( createClass({
 					React.createElement('th', { key: 's', className: 'rdtSwitch', onClick: this.props.showView( 'months' ), colSpan: 5, 'data-value': this.props.viewDate.month() }, locale.months( date ) + ' ' + date.year() ),
 					React.createElement('th', { key: 'n', className: 'rdtNext', onClick: this.props.addTime( 1, 'months' )}, React.createElement('span', {}, '›' ))
 				]),
-				React.createElement('tr', { key: 'd'}, this.getDaysOfWeek( locale ).map( function( day, index ) { return React.createElement('th', { key: day + index, className: 'dow'}, day ); }) )
+
+
+				/*
+				added slice(0,1) to render only first letter of day name
+
+				*/
+				React.createElement('tr', { key: 'd'}, this.getDaysOfWeek( locale ).map( function( day, index ) { return React.createElement('th', { key: day + index, className: 'dow'}, day.slice(0,1) ); }) )
+
+
 			]),
 			React.createElement('tbody', { key: 'tb' }, this.renderDays())
 		];
